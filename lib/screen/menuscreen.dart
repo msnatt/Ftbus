@@ -24,7 +24,10 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   final Func function = Func();
   Timer? _timer;
+  Timer? _timeronoff;
   LatLng? currentLocation;
+  bool isActive = false;
+  bool ison = false;
   List<dynamic>? stations;
   Map<String, dynamic>? station;
   int roundCall = GetroundCall();
@@ -37,12 +40,24 @@ class _MenuScreenState extends State<MenuScreen> {
     super.initState();
     gps_tracking();
     startLocationUpdates();
+    iscalledActive();
+  }
+
+  Future<void> iscalledActive() async {
+    _timeronoff = Timer.periodic(const Duration(seconds: 1), (timer) async {
+      isActive = roundCall == maxroundCall ? true : false;
+      if (isActive) {
+        setState(() {
+          ison = ison ? false : true;
+        });
+      }
+    });
   }
 
   Future<void> startLocationUpdates() async {
     stations = await function.Fetch_Stations();
     print(stations);
-    _timer = Timer.periodic(Duration(seconds: 3), (timer) async {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
       // GET roundCall
       roundCall = GetroundCall();
       // หา station ที่ใกล้ที่สุด
@@ -52,6 +67,7 @@ class _MenuScreenState extends State<MenuScreen> {
           Stationtext = "คุณอยู่ใกล้ ${station?['name']}";
         } else {
           SetroundCall(0);
+          isActive = false;
           Stationtext = "กำลังค้นหาสถานี..";
         }
       });
@@ -81,6 +97,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   void dispose() {
     _timer?.cancel(); // หยุด Timer เมื่อ Widget ถูกทำลาย
+    _timeronoff?.cancel();
     super.dispose();
   }
 
@@ -129,8 +146,8 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                   Text(
                     Stationtext,
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.normal),
                   ),
                   const SizedBox(height: 80),
                   Row(
@@ -156,6 +173,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                 int updateroundcall = GetroundCall();
                                 setState(() {
                                   roundCall = updateroundcall;
+                                  isActive = true;
                                 });
                                 Fluttertoast.showToast(
                                   msg: "เรียกรถสำเร็จแล้ว.",
@@ -253,7 +271,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => StationScreen()),
+                                  builder: (context) => const StationScreen()),
                             );
                           },
                           child: Ink(
@@ -284,7 +302,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BusScreen()),
+                                  builder: (context) => const BusScreen()),
                             );
                           },
                           child: Ink(
@@ -330,6 +348,25 @@ class _MenuScreenState extends State<MenuScreen> {
                     size: 25,
                   ),
                 )),
+          ),
+          // วงกลมมุมขวาบน
+          Positioned(
+            top: 50,
+            right: 20,
+            child: SizedBox(
+              child: Container(
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                  color: isActive
+                      ? ison
+                          ? const Color.fromARGB(255, 255, 255, 0)
+                          : const Color.fromARGB(255, 255, 131, 36)
+                      : const Color.fromARGB(255, 85, 85, 85),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
           ),
         ],
       ),
