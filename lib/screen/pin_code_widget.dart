@@ -1,10 +1,8 @@
 import 'package:my_appbus/api/globalvar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:my_appbus/screen/menuscreen.dart';
 import 'package:my_appbus/screen/station_admin.dart';
-import 'package:vector_map_tiles/vector_map_tiles.dart';
 import '../api/check_pin_api.dart';
 
 class PinCodeWidget extends StatefulWidget {

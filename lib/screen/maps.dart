@@ -26,8 +26,6 @@ class _mapsState extends State<maps> {
   List<String> busRoutes = [];
   List<dynamic> allStations = [];
   Timer? _timer;
-  String _data = '';
-  String _data2 = '';
   LatLng? apiLocation; // ตัวแปรเก็บตำแหน่งจาก API
   LatLng? currentLocation = MenuScreen.currentLocation;
   List<dynamic>? stations;

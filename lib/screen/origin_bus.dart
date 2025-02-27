@@ -23,7 +23,6 @@ class _BusState extends State<Bus> {
   List<String> busRoutes = [];
   List<dynamic> allStations = [];
 
-  String _data = '';
   String _data2 = '';
   LatLng? apiLocation; // ตัวแปรเก็บตำแหน่งจาก API
 
@@ -90,15 +89,8 @@ class _BusState extends State<Bus> {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      setState(() {
-        _data = 'Data created successfully : ${response.body}';
-      });
       return true; // ส่งสำเร็จ
     } else {
-      print('Failed to create data: ${response.body}');
-      setState(() {
-        _data = "Failed to create data";
-      });
       return false; // ส่งไม่สำเร็จ
     }
   }

@@ -82,8 +82,7 @@ class Func {
     if (response.statusCode == 200 || response.statusCode == 201) {
       _data2 = response.body; // บันทึกข้อมูลใน _data2
 
-      apiLocation =
-          handleData2(_data2); // เรียกใช้ฟังก์ชันนี้เพื่อแสดงหมุดเขียว
+      apiLocation = handleData2(_data2); // เรียกใช้ฟังก์ชันนี้เพื่อแสดงหมุดเขียว
       return apiLocation; // ส่งสำเร็จ
     } else {
       _data2 = "Failed to create data";
