@@ -53,12 +53,12 @@ class _mapsState extends State<maps> {
   }
 
   Future<void> startLocationUpdates() async {
-    _timer = Timer.periodic(Duration(seconds: 3), (timer) async {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
       // GET roundCall
       roundCall = GetroundCall();
       // หา station ที่ใกล้ที่สุด
       if (currentLocation != null) {
-        station = await function.findNearestStation(currentLocation, stations);
+        station = function.findNearestStation(currentLocation, stations);
       }
       setState(() {
         try {
@@ -70,7 +70,7 @@ class _mapsState extends State<maps> {
           }
         } catch (e) {
           SetroundCall(0);
-          print("Error: " + e.toString());
+          print("Error: $e");
           stationtext = "กำลังค้นหาตำแหน่งของคุณ..";
         }
       });
@@ -120,7 +120,7 @@ class _mapsState extends State<maps> {
                 FlutterMap(
                   mapController: _mapController,
                   options: MapOptions(
-                    initialCenter: currentLocation ?? LatLng(13.8097, 100.66),
+                    initialCenter: currentLocation ?? const LatLng(13.8097, 100.66),
                     initialZoom: 5,
                   ),
                   children: [
@@ -172,7 +172,7 @@ class _mapsState extends State<maps> {
                   bottom: 20,
                   right: 20,
                   child: FloatingActionButton(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     onPressed: () {
                       if (currentLocation != null) {
                         _mapController.move(
@@ -198,7 +198,7 @@ class _mapsState extends State<maps> {
           ),
           Text(
             stationtext,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -232,7 +232,7 @@ class _mapsState extends State<maps> {
                     );
                   }).toList(),
                 ),
-                Text(
+                const Text(
                   "",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                 ),
@@ -255,7 +255,7 @@ class _mapsState extends State<maps> {
                           setState(() {
                             apiLocation = success;
                           });
-                          setcentermap(apiLocation ?? LatLng(13.81, 100.66));
+                          setcentermap(apiLocation ?? const LatLng(13.81, 100.66));
                           Fluttertoast.showToast(
                             msg: "พบตำแหน่งรถบัสแล้ว!",
                             toastLength: Toast.LENGTH_SHORT,
