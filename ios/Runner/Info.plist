@@ -45,14 +45,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>แอปนี้ต้องการใช้ตำแหน่งของคุณเพื่อแสดงตำแหน่งปัจจุบัน</string>
-
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>แอปต้องการเข้าถึงตำแหน่งของคุณตลอดเวลา</string>
-
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>แอปต้องการตำแหน่งของคุณขณะใช้งาน</string>
+   <key>NSLocationWhenInUseUsageDescription</key>
+   <string>แอปต้องการตำแหน่งที่ตั้งของคุณขณะใช้งานเพื่อคำนวณระยะห่างระหว่างคุณกับสถานี</string>
+   <key>NSLocationAlwaysUsageDescription</key>
+   <string>แอปต้องการตำแหน่งที่ตั้งตลอดเวลาเพื่อใช้ในช่วงคำนวณระยะทาง</string>
+   <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+   <string>แอปต้องการตำแหน่งที่ตั้งตลอดเวลาเพื่อใช้ในช่วงคำนวณระยะห่างระหว่างคุณกับสถานีทั้งหมด</string>
+   <key>ITSAppUsesNonExemptEncryption</key>
+   <false/>
 
 </dict>
 </plist>
