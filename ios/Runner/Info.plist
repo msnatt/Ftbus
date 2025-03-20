@@ -29,11 +29,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>แอปต้องการตำแหน่งที่ตั้งตลอดเวลาเพื่อใช้ในช่วงคำนวณระยะห่างระหว่างคุณกับสถานีทั้งหมด</string>
+	<string>The app needs your location at all times to calculate the distance between you and all stations.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>แอปต้องการตำแหน่งที่ตั้งตลอดเวลาเพื่อใช้ในช่วงคำนวณระยะทาง</string>
+	<string>The app needs your location at all times to use it during the distance calculation.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>แอปต้องการตำแหน่งที่ตั้งของคุณขณะใช้งานเพื่อคำนวณระยะห่างระหว่างคุณกับสถานี</string>
+	<string>The app needs your location while in use to calculate the distance between you and the station.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
